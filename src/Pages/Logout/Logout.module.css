@@ -1,0 +1,7 @@
+.logout{
+    color: #fff;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+    cursor: pointer;
+}

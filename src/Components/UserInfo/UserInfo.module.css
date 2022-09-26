@@ -1,0 +1,29 @@
+.userinfo{
+    border: 1px solid #ccc;
+    text-align: left;
+     margin-bottom: 25px;   
+}
+.sectiontitle{
+    padding: 1% 2%;
+    color: #fff;
+    background-color: #1890ff;
+}
+.section1{
+    display: flex;
+    margin-left: 25px; 
+    justify-content: space-between; 
+    width: 100%;  
+}
+.topsection{
+    display: flex;
+    width: 100%;  
+}
+.section1 p:first-child{
+    font-weight: bold;
+    text-transform: uppercase;
+    
+}
+.avatar{
+    width: 10%;
+   padding:5px 15px 15px  15px;
+}
