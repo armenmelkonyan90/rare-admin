@@ -1,0 +1,24 @@
+.back{
+    
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 30px;
+    margin-top: 20px;
+    cursor: pointer;
+    font-weight: 500;
+
+}
+.left{
+    text-align: left;
+}
+.adsfilter span{
+    color:#3E6C96;
+    border-bottom:1px dashed #3E6C96;
+    margin-right: 15px;
+    font-size: 12px;
+    cursor: pointer;;
+  
+  }
+  .adsfilter {
+    margin-bottom: 25px;
+}

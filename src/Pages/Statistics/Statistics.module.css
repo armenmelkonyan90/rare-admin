@@ -1,0 +1,111 @@
+.statisticSection{
+ display: flex;
+ flex-wrap: wrap;
+ width: 80%;
+}
+.text{
+    text-align: left;
+    color:#fff;
+    line-height: 2px;
+}
+.allUser{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #F1A23C;
+    position: relative;
+   
+}
+.useronline{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+background-color: #3273BF;
+margin-right: 30px;
+margin-bottom:30px;
+position: relative;
+}
+.newusercount{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #E06A49;
+    position: relative;
+}
+.mobile{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #A400BE;
+    position: relative;
+}
+.allads{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #3273BF;
+    position: relative;
+}
+.closedads{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #449765;
+    position: relative;
+}
+.archiveads{
+    padding: 35px;
+    width: 519px;
+    height: 100px;  
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #F1A23C;
+    position: relative;
+}
+.adscount{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    margin-right: 30px;
+    margin-bottom:30px;
+    background-color: #E06A49;
+    position: relative;
+}
+.newdialogs{
+    padding: 35px;
+    width: 519px;
+    height: 100px;
+    background-color: #449765;
+    position: relative;
+}
+.left{
+    text-align: left;
+}
+.statistcefilter {
+    margin-bottom: 25px;
+}
+.statistcefilter span{
+  color:#3E6C96;
+  border-bottom:1px dashed #3E6C96;
+  margin-right: 15px;
+  font-size: 12px;
+  cursor: pointer;;
+
+}
+.statistic_icon span{
+    font-size: 55px;
+    position: absolute;
+    top:20px;
+    right: 25px;
+    color:#00000038;
+}

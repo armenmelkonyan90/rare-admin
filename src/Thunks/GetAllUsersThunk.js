@@ -2,13 +2,13 @@ import { GETALLUSER_SUCCESS,GETUSERBYID_SUCCESS,SET_TOKEN_USER,USER_STATE } from
 import { api } from '../Services/Base';
 
 
-export function GetAllUsersThunk() {
+export function GetAllUsersThunk(state) {
     return async (dispatch, getState) => {
- 
+        console.log(state, 'dataaa')
         // dispatch({
         //     type: LOADING,
         // })
-        api.get('/user/all')
+        api.get(`/user/all?filter=${state}`)
             .then((data) => {
               //  console.log(data.data.data, 'dataaa')
                 dispatch({
@@ -33,6 +33,7 @@ export function GetAllUsersThunk() {
             })
     }
 }
+
 
 export function GetUsersByIdThunk(id) {
     return async (dispatch, getState) => {
@@ -74,8 +75,7 @@ export function BlockedUser(id,blocked) {
             blocked:blocked
         })      
             .then((data) => {
-                console.log(data,"BlockedData");
-                 dispatch({
+                   dispatch({
                     type:USER_STATE,
                     payload:{
                         // success:true,

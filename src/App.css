@@ -13,4 +13,38 @@
   margin-bottom: 30px;
 
 }
+.ant-layout-sider-children{
+/* padding-top: 63px !important; */
 
+}
+.ant-layout-header {
+background-color: #548DC2;
+display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.ant-menu.ant-menu-dark, .ant-menu-dark .ant-menu-sub, .ant-menu.ant-menu-dark .ant-menu-sub {
+  color: rgba(255, 255, 255, 0.65);
+  background: #666D73;
+}
+.anticon-menu-fold{
+color: #fff;
+padding-left: 30px;
+}
+.ant-table-thead>tr>.ant-table-cell{
+font-weight: bold;
+color:#3E6C96;
+}
+.ant-space {
+  display: block;
+  padding: 0 5px 5px 0;
+}
+.ant-menu-submenu-active, .ant-menu-dark .ant-menu-submenu-open{
+  background: rgba(0, 0, 0, 0.1);
+  border-left:3px solid #548DC2;
+ }
+ .ant-select,.ant-input{
+  border: 1px solid #3E6C96;
+  text-align: left;
+  width: 300px;
+ }

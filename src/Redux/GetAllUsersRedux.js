@@ -13,6 +13,7 @@ const getAllUserState = {
     error: '',
     loading: false,
     blocked:false,
+    blockedSuccess: false,
     userByID:{}
 }
 
@@ -25,6 +26,7 @@ function GetAllUsersRedux(state = getAllUserState, action) {
             success: action.payload.success,
             loading: false,
             error:'',
+            blockedSuccess: false,
            
         }
     }
@@ -39,6 +41,7 @@ function GetAllUsersRedux(state = getAllUserState, action) {
         return {
             ...state,
             blocked: action.payload.blocked,
+            blockedSuccess: true,
 
         }
     }

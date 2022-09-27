@@ -1,6 +1,7 @@
+import { Button } from 'antd';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import {useNavigate } from 'react-router-dom';
 import { LogOut } from '../../Redux/LoginRedux';
 
 
@@ -21,11 +22,14 @@ const Logout = () => {
 
   return (
    <> 
-     <div className={styles.logout} onClick={(() => {
-          dispatch(LogOut());
-          window.href = '/';
-        })}>
-          Выйти
+     <div className={styles.logout} >
+      
+         <Button className={styles.logout_btn} type="default"  onClick={(() => {
+              dispatch(LogOut());
+              window.href = '/';
+          })}>
+        Выход
+      </Button>
         </div>
     </>
   );

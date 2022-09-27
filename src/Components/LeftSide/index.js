@@ -4,26 +4,71 @@ import {
     NotificationOutlined,
     UserOutlined,
     SettingOutlined,
+    MenuFoldOutlined,
+    MenuUnfoldOutlined,
   
   } from '@ant-design/icons';
   import { Breadcrumb, Layout, Menu } from 'antd';
   import React, { useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useNavigate } from 'react-router-dom';
 import Logout from '../../Pages/Logout';
+import styles from "./LeftSide.module.css";
   const { Header, Content, Footer, Sider } = Layout;
   
  const LeftSide = () => {
     const [collapsed, setCollapsed] = useState(false);
-
+const navigate =  useNavigate();
      const menuItem = [
-        { index: '1', title: "Объявления", icon: <DesktopOutlined />, path: 'ads' },
-        { index: '2', title: "Пользователи", icon: <UserOutlined />,path: 'all-users' },
-        { index: '3', title: "Статистика", icon: <PieChartOutlined />, path: 'statistic' },
-        { index: '4', title: "Настройки", icon: <SettingOutlined />, path: 'settings' },
-        { index: '5', title: "Уведомления", icon: <NotificationOutlined />, path: 'notice'  },
+        { index: '3', label: "Статистика", icon: <PieChartOutlined />, key: 'statistic', },
+        { index: '1', label: "Объявления", icon: <DesktopOutlined />, children: [
+          {
+            label: 'Новые',
+            key: 'new-ads',
+            path: 'ads'
+          },
+          {
+            label: 'Опубликованные',
+            key: 'accepted',
+          },
+          {
+            label: 'Отклоненные',
+            key: 'rejected',
+          },
+        ],},
+        { index: '2', label: "Пользователи", icon: <UserOutlined />, 
+         children: [
+          {
+            label: 'Все пользователи',
+            key: 'all',
+          },
+          {
+            label: 'Новые',
+            key: 'new',
+          },
+          {
+            label: 'Черный список',
+            key: 'blocked',
+          },
+        ], },
+        { index: '5', label: "Уведомления", icon: <NotificationOutlined />,
+        children: [
+          {
+            label: 'Новое уведомление',
+            key: 'notice',
+          },
+          {
+            label: 'История уведомлений',
+            key: 'setting:8',
+          },       
+        ],   },
+        { index: '4', label: "Настройки", icon: <SettingOutlined />,  key: 'settings' },       
        
     ]
+    const onClick = (e) => {
+      console.log('click ', e);
+      navigate(`${e.key}`,{state:e.key});
 
+    };
     return (
       <Layout
         style={{
@@ -31,6 +76,8 @@ import Logout from '../../Pages/Logout';
         }}
       >
         <Sider collapsible collapsed={collapsed} onCollapse={(value) => setCollapsed(value)}>
+          <div className={styles.lefttop}> App Admin</div>
+          <div className={styles.menutitle}>Меню</div>
           <div className="logo" />
           <Menu
             theme="dark"
@@ -38,15 +85,17 @@ import Logout from '../../Pages/Logout';
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
             style={{ height: 'calc(100% - 60px)' }}
-            items= {
-              menuItem?.map((element) => {
-                return {
-                  label: <Link to={element?.path}>{element.title}</Link>,
-                  icon: element.icon,
-                  key: element?.index
-                }
-              })
-          }
+            items={menuItem}
+            onClick={onClick}
+          //   items= {
+          //     menuItem?.map((element) => {
+          //       return {
+          //         label: <Link to={element?.path}>{element.title}</Link>,
+          //         icon: element.icon,
+          //         key: element?.index
+          //       }
+          //     })
+          // }
         />
 
         </Sider>
@@ -57,13 +106,12 @@ import Logout from '../../Pages/Logout';
 
 
         <Layout className="site-layout">
-          <Header
-            className="site-layout-background"
-            style={{
-              padding: 0,
-            }}
-          >
-            <Logout />
+        <Header className="site-layout-background" style={{ padding: 0 }}>
+          {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            className: 'trigger',
+            onClick: () => setCollapsed(!collapsed),
+          })}
+             <Logout />
             </Header>
           <Content
             style={{

@@ -1,0 +1,18 @@
+.lefttop{
+    background-color:#487BAA;
+    /* font-family: 'Roboto'; */
+    font-style: normal;
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 30px;
+    color: #fff;
+    padding: 16.5px 0;
+
+}
+.menutitle{
+    background-color: #4D5358;
+    padding: 10px 30px;
+    color:#A3A3A3;
+    text-align:left;
+
+}

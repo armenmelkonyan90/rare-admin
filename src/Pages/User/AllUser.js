@@ -1,69 +1,106 @@
-import { Space, Table, Tag } from 'antd';
+import { Popconfirm, Space, Table, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { USER_STATE } from '../../Redux/GetAllUsersRedux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { BlockedUser, GetAllUsersThunk } from '../../Thunks/GetAllUsersThunk';
-
+import { EditOutlined, StopOutlined } from '@ant-design/icons';
 
 
 
 const AllUser = () => {
 
-  const [blocked, setBlocked] = useState(false);
-  const [clickedId, setClickedId] = useState(null);
+ const {state} = useLocation();
+ 
 
   const navigate = useNavigate();
   const users = useSelector((state) => { 
-  
+  console.log(state.getalluser.users, "usersss");
     return state.getalluser.users;
   });
-  const blockedred = useSelector((state) => {   
-    return state.getalluser.users.blocked;
+
+  const blockedSuccess = useSelector((state) => {   
+    return state.getalluser.users.blockedSuccess;
   });
-  const dispatch =useDispatch();   
+  const dispatch = useDispatch();   
      useEffect(()=>{
-          dispatch(GetAllUsersThunk());
-     },[])
+      if (state) {
+          dispatch(GetAllUsersThunk(state));
+      }
+     },[state])
+
+     useEffect(() => {
+        if (blockedSuccess) {
+          dispatch(GetAllUsersThunk(state));
+        }
+     }, [blockedSuccess]);
     
+     function confirm(id,blocked) {
+      dispatch(BlockedUser(id,blocked));
+  }
+
 const columns = [
   {
-    title: 'Id',
+    title: 'ID',
     dataIndex: 'id',
     key: 'id',
-},
+  },
   {
     title: 'Имя',
     dataIndex: 'name',
     key: 'name',
 },
 {
-    title: 'Эл. адрес',
-    dataIndex: 'email',
-    key: 'email',
-},
-{
-    title: 'Телефон',
-    dataIndex: 'phone',
-    key: 'phone',
-},
-{
-  title: 'Количество объявлений',
-  dataIndex: 'productsCount',
-  key: 'productsCount',
-},
-{
-  title: 'Создано на',
+  title: 'Дата регистрации',
   dataIndex: 'createdAt',
   key: 'createdAt',
 },
 {
-  title: 'Blocked',
-  dataIndex: 'blocked',
-  key: 'blocked',
+  title: 'Объявления',
+  dataIndex: 'email',
+  key: 'email',
+},
+{
+  title: 'Объявления / Количество объявлений',
+  dataIndex: 'productsCount',
+  key: 'productsCount',
+},
+{
+  title: 'Отзывы / рейтинг',
+  dataIndex: 'review',
+  key: 'review',
+  render: (_, record) => {
+    return <div style={{cursor:"pointer"}} onClick={()=>{console.log("see")} }>Смотреть</div>
+  }
+},
+{
+  title: 'VK ID',
+  dataIndex: 'vkid',
+  key: 'vkid',
+},
+{
+  title: 'Телефон',
+  dataIndex: 'phone',
+  key: 'phone',
+},
+
+{
+  title: 'Комментарий',
+  dataIndex: 'comments',
+  key: 'comments',
+  render: (_, record) => {
+    return (
+      <Popconfirm
+      title={<div>Новый комметарий <div><textarea> Текст нового комментария </textarea></div></div>}
+      onConfirm={() => confirm(record.id, !record.blocked)}
+      okText={"Добавить"}
+      cancelText="Отменить">
+                 <span style={{cursor:"pointer"}}>{"add"}</span>
+              </Popconfirm>
+    )
+  }
 },
   {
-    title: 'Действие',
+    title: 'Действия',
     key: 'action',
     render: (_, record) => {
      
@@ -74,15 +111,22 @@ const columns = [
                  const { id } = record;
                  navigate(`/view-user/${id}`);
                 })}>View</a>
+                
         <a onClick={(()=>{
           // console.log(record.id);
           const { id } = record;
-          setClickedId(id);
-          setBlocked(!blocked);
-          dispatch(BlockedUser(record.id, !blocked));
-        })}>
-       
-          {(blocked && clickedId === record.id) || record.blocked  ? "Enabled" : "Disabled"}</a>
+          // setClickedId(id);
+          // setBlocked(!blocked);
+          // dispatch(BlockedUser(record.id, !record.blocked));
+        })}>       
+           <Popconfirm
+                title={<div> Вы уверены, что хотите заблокироватьпользователя ${record.id} <div><p>Срок (дней)</p><input type="text"/><input type="submit"/></div> </div>}
+                onConfirm={() => confirm(record.id, !record.blocked)}
+                okText={record.blocked ? "Заблокировать" : "Разблокировать"}
+                cancelText="Отменить">
+                           {record.blocked  ? "Enabled" : <a> <StopOutlined /></a>}
+                        </Popconfirm>
+              </a>
       </Space>
       )
      }
@@ -93,7 +137,7 @@ const columns = [
 
    return(   
     <div className='top'> 
-      <h3>Пользователи</h3>  
+      <h3>Все пользователи</h3>  
    {users.length ? <Table columns={columns} dataSource={users} rowKey="id" id="id"/> : <p>No Details</p>}        
       
   </div>

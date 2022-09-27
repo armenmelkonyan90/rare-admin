@@ -1,7 +1,9 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: "https://da7f-45-143-205-154.ngrok.io",
+    //    baseURL: "https://2063-45-143-205-154.ngrok.io"
+    baseURL: process.env.REACT_APP_BASE_URL
+    // baseURL: "http://193.187.175.79:4000",
     // headers: { 'Content-Type': 'Application/json', 
     //            "Accept-Language": "en-US"}
 })

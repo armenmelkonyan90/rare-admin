@@ -5,12 +5,16 @@ import LoginRedux from './Redux/LoginRedux';
 import ForgotPasswordRedux from './Redux/ForgotePasswordRedux';
 import GetAllUsersRedux from "./Redux/GetAllUsersRedux";
 import GetAllAdsRedux from "./Redux/AdsRedux";
+import SettingsRedux from "./Redux/SettingsRedux";
+import GetAllStatisticsRedux from "./Redux/StatisticsRedux";
 
 const rootReducer = combineReducers({
     login: LoginRedux,
     forgotPassword:ForgotPasswordRedux,
     getalluser:GetAllUsersRedux,
-    getallads:GetAllAdsRedux
+    getallads:GetAllAdsRedux,
+    getsettings:SettingsRedux,
+    getstatistics:GetAllStatisticsRedux,
     
 });
 

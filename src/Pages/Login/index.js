@@ -52,12 +52,12 @@ const Login = () => {
       autoComplete="off"
     >
       <Form.Item
-        label="Username"
+        label="Email"
         name="username"
         rules={[
           {
             required: true,
-            message: 'Please input your username!',
+            message: 'Please input your email!',
           },
         ]}
       >
